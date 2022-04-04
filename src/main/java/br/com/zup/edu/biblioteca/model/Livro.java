@@ -16,7 +16,7 @@ public class Livro {
     @Lob
     private String descricao;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String ISBN;
 
     @Enumerated(EnumType.STRING)
