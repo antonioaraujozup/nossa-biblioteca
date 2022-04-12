@@ -1,6 +1,7 @@
 package br.com.zup.edu.biblioteca.controller;
 
 import br.com.zup.edu.biblioteca.model.Livro;
+import br.com.zup.edu.biblioteca.model.TipoCirculacao;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.ISBN;
 import org.hibernate.validator.constraints.Length;
@@ -28,19 +29,22 @@ public class LivroRequest {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataPublicacao;
 
+    @NotNull
+    private TipoCirculacao circulacao;
 
-    public LivroRequest(String titulo, String descricao, String isbn, LocalDate dataPublicacao) {
+    public LivroRequest(String titulo, String descricao, String isbn, LocalDate dataPublicacao, TipoCirculacao circulacao) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.isbn = isbn;
         this.dataPublicacao = dataPublicacao;
+        this.circulacao = circulacao;
     }
 
     public LivroRequest() {
     }
 
     public Livro paraLivro(){
-        return new Livro(titulo,descricao,isbn,dataPublicacao);
+        return new Livro(titulo,descricao,isbn,dataPublicacao,circulacao);
     }
 
     public String getTitulo() {
@@ -57,5 +61,9 @@ public class LivroRequest {
 
     public LocalDate getDataPublicacao() {
         return dataPublicacao;
+    }
+
+    public TipoCirculacao getCirculacao() {
+        return circulacao;
     }
 }
